@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <input type="number" id="inp">
+    <button id="btn">צור ריבועים</button>
+    <div id="contiener"></div>
+
+    <script>
+        const inp = document.getElementById("inp")
+        const btn = document.getElementById("btn")
+        const cont = document.getElementById("contiener")
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        btn.addEventListener("click", () => {
+            const num = inp.value
+            cont.innerHTML = ""
+            for (let i = 0; i < num; i++) {
+                const div = document.createElement("div")
+                const newId = "id" + i
+                div.id = newId
+                cont.appendChild(div)
+                const newDiv = document.getElementById(newId)                
+                newDiv.style.width = "50px";
+                newDiv.style.height = "50px";
+                newDiv.style.background = getRandomColor()
+                newDiv.style.margin = "10px"
+                newDiv.innerHTML = i + 1
+                console.log(newDiv);
+                
+                newDiv.addEventListener("click", ()=>{
+                    newDiv.remove();
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
